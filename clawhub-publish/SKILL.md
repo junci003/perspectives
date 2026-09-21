@@ -260,6 +260,29 @@ Error: Unknown skill category slug "business-ops" (reset in 17s)
 > 无法确认分类是否合法时，**直接省略 `--categories`**（该参数可选），
 > 比赌一个 slug 触发冷却划算。发布后仍可用 `& $cli skill tag` 等命令调整。
 
+**⚠️ slug 保护命名空间（2026-09-21 实测，第五个陷阱）**
+
+`clawhub-*` 与 `openclaw-*` 是平台保留前缀，**slug 不能以它们开头或结尾**：
+
+```
+Error: "clawhub-publish" uses the protected "clawhub" slug namespace.
+       Choose a slug that does not start with "clawhub-" or end with "-clawhub". (reset in 31s)
+Error: "openclaw-codex-reinstall" uses the protected "openclaw" slug namespace.
+```
+
+四条要点：
+
+1. 判定的是 **slug**，不是显示名——显示名可以正常叫「ClawHub 发布与 GitHub 托管」。
+2. 报错**同样带 ~30s 冷却**，重试前必须等。
+3. **`--dry-run` 照样能过**（输出 `Would publish <slug>@x.y.z`），只有真发才拒。
+   所以 dry-run 通过 ≠ 参数合法：它查不出分类 slug，也查不出保护命名空间。
+4. 实测 `codex-*` **不是**保护前缀（`codex-archive-to-obsidian` 首发成功），
+   但不要据此推断还有哪些——被拒后换个不带保留词的 slug 即可。
+
+**slug 与仓库目录名不一致时的规矩**：页面 slug 是给检索用的，仓库目录名是给本地管理用的，
+两者可以不同；但**必须在 README 里给出「目录名 → 平台 slug」的映射**，
+否则从仓库摸过来的人在平台上搜不到，等于白收录。
+
 **slug 冲突检查**：发布前先搜一下。
 
 ```powershell

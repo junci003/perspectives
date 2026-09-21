@@ -39,9 +39,20 @@
 | [zh-humanizer](zh-humanizer/) | 中文文本去 AI 味 / 发布前自查 | 18 类 AI 味分级清单（T1 一眼定罪 / T2 组合判定 / T3 统计层）、6 项量化阈值、4 种改写手法、8 个文体档位、8 条反模式、6 条验证判据 |
 | [ui-humanizer](ui-humanizer/) | 界面 / 前端去 AI 味：紫色渐变、emoji 当图标、英文报错直出 | 3 类硬指纹（AI 默认色板 / emoji 图标 / 技术信息泄漏）+ 3 类软指纹、色相密度判据、修复映射表、L1–L3 强度分档、7 条失效条件、8 条反模式、**零依赖扫描脚本**（`--gate` 可接 CI） |
 | [github-skill-teardown](github-skill-teardown/) | 拆解 GitHub 上的热门 Agent Skill 生态 | 候选池建立 → 结构清单 → 正文抓取 → 中文覆盖扫描 → 统计分档，附 5 个可复用脚本与「可直接抄 / 必须换 / 不能抄」三档改造意见 |
-| [clawhub-publish](clawhub-publish/) | 把本地 skill 发布到 ClawHub 并托管到 GitHub | 发布前 5 步检查（含分发面竞争格局检索）、沙箱内 device flow 自助登录、内容审查 pattern、4 个实测陷阱、git refs 静默失败修复脚本 |
+| [clawhub-publish](clawhub-publish/) | 把本地 skill 发布到 ClawHub 并托管到 GitHub | 发布前 5 步检查（含分发面竞争格局检索）、沙箱内 device flow 自助登录、内容审查 pattern、**5 个实测陷阱**、git refs 静默失败修复脚本 |
 | [codex-archive-to-obsidian](codex-archive-to-obsidian/) | 把 Codex 会话记录归档进 Obsidian 知识库 | rollout jsonl 结构解析、双源扫描去重、注入噪声剥离（7 类）、自动生成索引 |
 | [openclaw-codex-reinstall](openclaw-codex-reinstall/) | Windows 下干净卸载重装 OpenClaw / Codex，并接入第三方模型 | 只读扫描清单、隔离备份替代回收站、三个 npm 安装坑、WSL 网关、桌面版模型名报错的三个独立根因、中文界面 |
+
+**目录名 ↔ 平台 slug**
+
+ClawHub 保留 `clawhub-*` / `openclaw-*` 前缀（slug 不能以它们开头或结尾），所以有两个 skill 的
+平台 slug 与仓库目录名不同：
+
+| 仓库目录 | ClawHub slug |
+|---|---|
+| `clawhub-publish` | `skill-publish-pipeline` |
+| `openclaw-codex-reinstall` | `codex-reinstall-windows` |
+| 其余 | 与目录名相同 |
 
 ## 安装
 
@@ -52,6 +63,10 @@ npm i -g clawhub
 clawhub install sunzi-perspective
 clawhub install zh-humanizer
 clawhub install ui-humanizer
+clawhub install github-skill-teardown
+clawhub install skill-publish-pipeline
+clawhub install codex-archive-to-obsidian
+clawhub install codex-reinstall-windows
 ```
 
 **方式二：手动**

@@ -11,7 +11,14 @@
 $ErrorActionPreference = 'Stop'
 
 # tool-type skills, listed by name (not *-perspective)
-$ExtraSkills = @('zh-humanizer')
+$ExtraSkills = @(
+    'zh-humanizer',
+    'ui-humanizer',
+    'github-skill-teardown',
+    'clawhub-publish',
+    'codex-archive-to-obsidian',
+    'openclaw-codex-reinstall'
+)
 
 $src = Join-Path $env:USERPROFILE '.workbuddy\skills'
 $dst = $PSScriptRoot

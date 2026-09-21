@@ -18,7 +18,8 @@
 ```
 [name]/
 ├── SKILL.md          触发时加载：身份/原理 + 判断规则 + 加载路由
-└── references/       按需展开：清单 / 手册 / 分场景档位
+├── references/       按需展开：清单 / 手册 / 分场景档位
+└── scripts/          可选：确定性执行的脚本（零依赖优先）
 ```
 
 平时只占几百 token（frontmatter 常驻，正文触发才读，references 用到才展开）——这样它能在你每次提问时自动挂载，而不会挤占对话空间。
@@ -36,6 +37,11 @@
 | 工具 | 解决什么 | 内容 |
 |---|---|---|
 | [zh-humanizer](zh-humanizer/) | 中文文本去 AI 味 / 发布前自查 | 18 类 AI 味分级清单（T1 一眼定罪 / T2 组合判定 / T3 统计层）、6 项量化阈值、4 种改写手法、8 个文体档位、8 条反模式、6 条验证判据 |
+| [ui-humanizer](ui-humanizer/) | 界面 / 前端去 AI 味：紫色渐变、emoji 当图标、英文报错直出 | 3 类硬指纹（AI 默认色板 / emoji 图标 / 技术信息泄漏）+ 3 类软指纹、色相密度判据、修复映射表、L1–L3 强度分档、7 条失效条件、8 条反模式、**零依赖扫描脚本**（`--gate` 可接 CI） |
+| [github-skill-teardown](github-skill-teardown/) | 拆解 GitHub 上的热门 Agent Skill 生态 | 候选池建立 → 结构清单 → 正文抓取 → 中文覆盖扫描 → 统计分档，附 5 个可复用脚本与「可直接抄 / 必须换 / 不能抄」三档改造意见 |
+| [clawhub-publish](clawhub-publish/) | 把本地 skill 发布到 ClawHub 并托管到 GitHub | 发布前 5 步检查（含分发面竞争格局检索）、沙箱内 device flow 自助登录、内容审查 pattern、4 个实测陷阱、git refs 静默失败修复脚本 |
+| [codex-archive-to-obsidian](codex-archive-to-obsidian/) | 把 Codex 会话记录归档进 Obsidian 知识库 | rollout jsonl 结构解析、双源扫描去重、注入噪声剥离（7 类）、自动生成索引 |
+| [openclaw-codex-reinstall](openclaw-codex-reinstall/) | Windows 下干净卸载重装 OpenClaw / Codex，并接入第三方模型 | 只读扫描清单、隔离备份替代回收站、三个 npm 安装坑、WSL 网关、桌面版模型名报错的三个独立根因、中文界面 |
 
 ## 安装
 
@@ -44,14 +50,16 @@
 ```bash
 npm i -g clawhub
 clawhub install sunzi-perspective
+clawhub install zh-humanizer
+clawhub install ui-humanizer
 ```
 
 **方式二：手动**
 
 ```bash
 git clone https://github.com/junci003/perspectives.git
-cp -r perspectives/sunzi-perspective ~/.workbuddy/skills/
-cp -r perspectives/zh-humanizer     ~/.workbuddy/skills/
+cp -r perspectives/*-perspective ~/.workbuddy/skills/
+cp -r perspectives/zh-humanizer perspectives/ui-humanizer ~/.workbuddy/skills/
 ```
 
 ## 怎么用
@@ -66,6 +74,11 @@ cp -r perspectives/zh-humanizer     ~/.workbuddy/skills/
 - 「帮我去一下 AI 味」「这段是不是太像 AI 写的」
 - 「改成像人话」「发之前帮我过一遍」
 
+**ui-humanizer：**
+- 「这个页面一看就是 AI 做的」「紫色渐变太 AI 了」
+- 「emoji 当图标很廉价」「报错直接把英文甩给用户」
+- 也可以直接跑：`python scripts/scan_ui_ai_tells.py <项目目录>`
+
 想退出视角时说「切回正常」即可。
 
 ## 设计原则
@@ -76,6 +89,8 @@ cp -r perspectives/zh-humanizer     ~/.workbuddy/skills/
 4. **诚实边界**。明确写出它答不了什么。一个不告诉你局限在哪的视角，不值得信任。
 5. **不美化、不洗白**。如实呈现批评者视角与争议，不替原作者做价值观背书。
 6. **每个 skill 都要有反模式表和验证判据**。只写「怎么做」而不写「怎么算做错了」和「怎么算做完了」，是半成品。
+7. **有脚本的，用脚本；需要判断的，交给人。** 确定性部分不该由模型每次重新推理，判断性部分不该被硬编码规则替代。
+8. **不做检测规避**。`zh-humanizer` / `ui-humanizer` 是改善内容与设计，不是把作品伪装成「人类产出」以骗过某个检测器。
 
 ## 关于证据层级
 
@@ -108,6 +123,8 @@ cp -r perspectives/zh-humanizer     ~/.workbuddy/skills/
 ## 致谢
 
 视角蒸馏方法论来自 **女娲 · Skill 造人术**（[花叔 Huashu](https://github.com/alchaincyf/nuwa-skill)，MIT 许可）。
+
+`ui-humanizer` 的问题域由 ClawHub `@moan19921019-code/remove-ai-sence` 最先公开界定（AI 常用色 / emoji 图标 / 英文报错暴露）。
 
 ## 版权说明
 

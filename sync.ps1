@@ -1,34 +1,47 @@
-# sync.ps1 — 把本机已蒸馏的视角同步进本仓库
+# sync.ps1 - copy locally distilled skills into this repo
 #
-# 用法：在本仓库根目录执行  .\sync.ps1
-# 作用：扫描 %USERPROFILE%\.workbuddy\skills\ 下所有 *-perspective 目录，
-#       覆盖复制到本仓库。不删除仓库里已存在但本机没有的视角。
+# Usage: run in repo root   .\sync.ps1
+#  1. scans %USERPROFILE%\.workbuddy\skills\ for every *-perspective directory
+#  2. adds the tool-type skills listed in $ExtraSkills (they do not match *-perspective)
+#  3. copies them over this repo. Never deletes directories that exist here but not locally.
+#
+# NOTE: messages are ASCII on purpose. PowerShell 5.1 reads BOM-less .ps1 as ANSI,
+# so non-ASCII string literals come out garbled on this machine.
 
 $ErrorActionPreference = 'Stop'
+
+# tool-type skills, listed by name (not *-perspective)
+$ExtraSkills = @('zh-humanizer')
 
 $src = Join-Path $env:USERPROFILE '.workbuddy\skills'
 $dst = $PSScriptRoot
 
 if (-not (Test-Path $src)) {
-    Write-Error "找不到 skills 目录：$src"
+    Write-Error "skills directory not found: $src"
     exit 1
 }
 
-$skills = Get-ChildItem $src -Directory -Filter '*-perspective'
-if (-not $skills) {
-    Write-Host "没有找到任何 *-perspective 目录。"
-    exit 0
-}
+$names = @()
+$names += (Get-ChildItem $src -Directory -Filter '*-perspective').Name
+$names += $ExtraSkills
+$names = $names | Sort-Object -Unique
 
-foreach ($s in $skills) {
-    $target = Join-Path $dst $s.Name
+$count = 0
+foreach ($name in $names) {
+    $full = Join-Path $src $name
+    if (-not (Test-Path $full)) {
+        Write-Host "[skip] not on this machine: $name"
+        continue
+    }
+    $target = Join-Path $dst $name
     New-Item -ItemType Directory -Force -Path $target | Out-Null
-    Copy-Item (Join-Path $s.FullName '*') -Destination $target -Recurse -Force
-    Write-Host "已同步：$($s.Name)"
+    Copy-Item (Join-Path $full '*') -Destination $target -Recurse -Force
+    Write-Host "[ok]   $name"
+    $count++
 }
 
 Write-Host ''
-Write-Host '完成。检查改动后提交：'
+Write-Host "synced $count skill(s). next:"
 Write-Host '  git add -A'
-Write-Host '  git commit -m "sync perspectives"'
+Write-Host '  git commit -m "sync skills"'
 Write-Host '  git push'

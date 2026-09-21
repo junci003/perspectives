@@ -154,6 +154,17 @@ agent_created: true
 
 ---
 
-*本 Skill 由 WorkBuddy 生成，蒸馏时间 2026-09-21。*
-*英文对应物：`blader/humanizer`（5 万星，基于 Wikipedia「Signs of AI writing」）；本 skill 是其未覆盖的中文空白位的独立实现，未使用其代码或文本。*
-*同系列：`sunzi-perspective`（视角蒸馏）、`clawhub-publish`（分发）、`github-skill-teardown`（生态调研）。*
+*本 Skill 由 WorkBuddy 生成，2026-09-21。*
+
+**来源与许可**
+
+- 英文对应物为 [`blader/humanizer`](https://github.com/blader/humanizer)（MIT 许可，基于 Wikipedia 词条「Signs of AI writing」）。
+  本 skill 里「AI 文本的成因是每步都选对最广读者最安全的那个说法」这一解释框架，
+  以及按强度分级 + Before/After 对照的组织方式，**受其启发**。
+  中文特有的三层（翻译腔、体制话术、口语体 AI 化）以及全部分级清单、量化阈值、文体档位、
+  反模式表与验证判据为独立撰写，未复制其文本。
+- 骨架规范（description 只写触发条件不概括工作流；反模式表 / 失效条件 / 验证判据三层）
+  来自 2026-09 GitHub Skill 生态实测，主要参照 [`obra/superpowers`](https://github.com/obra/superpowers)（MIT）
+  与 [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills)。
+- 量化阈值出自火山引擎开发者社区公开的网文平台判定口径，**二手来源**，不是语言学共识。
+- 同系列：`sunzi-perspective`（视角蒸馏）、`clawhub-publish`（分发）、`github-skill-teardown`（生态调研）。

@@ -12,6 +12,7 @@
 |---|---|---|
 | **视角 perspective** | `[name]-perspective` | 一套思维方式。用第一人称以该框架回应，用于分析、审视、复盘 |
 | **工具 tool** | 按功能命名 | 一个可复用的处理流程。输入一段材料，输出一个可验证的结果 |
+| **专家包 expert** | 按功能命名，放在 `experts/` | 一个带角色的可加载 Agent：固定专业身份 + 工作流 + 预挂载技能 |
 
 一个 Skill 的目录结构：
 
@@ -46,6 +47,17 @@
 | [figure-design](figure-design/) | 手办 / 潮玩 / 盲盒 / GK 的产品化设计与量产前把关 | 2D→3D→模具→货架「三段翻译」模型、24 任务 4 闸门工作流、拆件分模壁厚公差拔模角的量化上下限、`gate_check.py` 过闸脚本 |
 | [godot-openxr-marker-tracking](godot-openxr-marker-tracking/) | 在 Godot 4.6+ 做 OpenXR 标记追踪（ArUco / AprilTag / QR） | Spatial Entities 接入、`OpenXRMarkerTracker` 用法、无 XR 设备时的 headless 编译校验与 API 回归、`Cannot call non-static function` 一类报错的成因 |
 | [mindar-webar-image-tracking](mindar-webar-image-tracking/) | 手机 WebAR 图像识别（扫卡牌 / 包装出 3D） | 纯 Node 编译 `.mind` 绕开 node-canvas、用特征点数在编译期判定目标图质量、合成假摄像头在无头浏览器做端到端验证 |
+
+### 专家包
+
+专家包不是单个 Skill，而是一个**带角色的 Agent**：固定专业身份、内置工作流、预挂载上面的技能。一次只能启用一个——启用后它接管对话的角色设定，不像技能那样可以叠加。
+
+| 专家包 | 花名 | 职业 | 预挂载技能 |
+|---|---|---|---|
+| [figure-product-expert](experts/figure-product-expert/) | 成器 | 手办产品化专家 | `figure-design` |
+| [webar-xr-engineer](experts/webar-xr-engineer/) | 章见微 | WebAR·XR 落地工程师 | `mindar-webar-image-tracking` + `godot-openxr-marker-tracking` |
+| [zh-expression-reviewer](experts/zh-expression-reviewer/) | 文自清 | 中文表达审校专家 | `zh-humanizer` + `ui-humanizer` |
+| [skill-ops](experts/skill-ops/) | — | Skill 工程专家团（4 人协作） | `clawhub-publish` + `github-skill-teardown` + `openclaw-codex-reinstall` + `codex-archive-to-obsidian` |
 
 **目录名 ↔ 平台 slug**
 
@@ -84,6 +96,19 @@ git clone https://github.com/junci003/perspectives.git
 cp -r perspectives/*-perspective ~/.workbuddy/skills/
 cp -r perspectives/zh-humanizer perspectives/ui-humanizer ~/.workbuddy/skills/
 ```
+
+**方式三：专家包**
+
+专家包是完整目录，放进本地专家市场即可（`experts/` 下每个子目录就是一个包）：
+
+```bash
+git clone https://github.com/junci003/perspectives.git
+mkdir -p ~/.workbuddy/plugins/marketplaces/my-experts/plugins
+cp -r perspectives/experts/* ~/.workbuddy/plugins/marketplaces/my-experts/plugins/
+```
+
+放好后重启一次 WorkBuddy，在左侧栏「专家」→「我的专家」里刷新即可看到。四个包都已在本地用过
+`validate_expert.py` 校验通过。
 
 ## 怎么用
 

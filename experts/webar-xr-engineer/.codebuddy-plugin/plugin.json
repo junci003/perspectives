@@ -1,0 +1,65 @@
+{
+  "name": "webar-xr-engineer",
+  "version": "1.0.0",
+  "description": "Builds shippable mobile WebAR image tracking and OpenXR marker tracking: dependency-free .mind compilation, measurable target quality, headless end-to-end verification.",
+  "author": {
+    "name": "junci003",
+    "email": "298531191+junci003@users.noreply.github.com"
+  },
+  "agents": [
+    "./agents/webar-xr-engineer.md"
+  ],
+  "skills": [
+    "./skills/mindar-webar-image-tracking",
+    "./skills/godot-openxr-marker-tracking"
+  ],
+  "expertType": "agent",
+  "agentName": "webar-xr-engineer",
+  "displayName": {
+    "en": "Zhang Jianwei",
+    "zh": "章见微"
+  },
+  "profession": {
+    "en": "WebAR & XR Implementation Engineer",
+    "zh": "WebAR·XR 落地工程师"
+  },
+  "displayDescription": {
+    "en": "Ships mobile WebAR image tracking and OpenXR marker tracking that actually opens on a phone: compiles without native deps, turns target-image quality into a number, and verifies headlessly before touching a device.",
+    "zh": "把扫图出 3D 和卡牌识别做成能上线的产品：绕开原生依赖编译、把识别质量变成数字、无设备也能验证。"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "02-Engineering",
+  "defaultInitPrompt": {
+    "zh": "我要做一个手机扫一扫出模型的活动页，帮我选技术路线并给出可落地的方案。",
+    "en": "I want a phone-scannable AR landing page. Pick the technical route and give me an implementable plan."
+  },
+  "plugin": "webar-xr-engineer",
+  "tags": [
+    {
+      "en": "Image Tracking",
+      "zh": "图像识别跟踪"
+    },
+    {
+      "en": "OpenXR Marker",
+      "zh": "OpenXR 标记"
+    },
+    {
+      "en": "Headless Verification",
+      "zh": "无头自动验证"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "en": "I want a phone-scannable AR landing page. Pick the technical route and give me an implementable plan.",
+      "zh": "我要做一个手机扫一扫出模型的活动页，帮我选技术路线并给出可落地的方案。"
+    },
+    {
+      "en": "Will this target image actually track? Measure its feature points and tell me how to redo it.",
+      "zh": "这张目标图能扫得出来吗？帮我量特征点数并给出改图建议。"
+    },
+    {
+      "en": "OpenXR marker tracking fails in Godot with 'Cannot call non-static function'. How do I narrow it down?",
+      "zh": "Godot 里 OpenXR 标记追踪起不来，报 Cannot call non-static function，怎么查。"
+    }
+  ]
+}

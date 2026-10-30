@@ -1,0 +1,65 @@
+{
+  "name": "zh-expression-reviewer",
+  "version": "1.0.0",
+  "description": "Pre-publish review for Chinese text and UI: three-level AI-tell removal with zero fact loss, quantified thresholds, and automated scanning of the three hard UI fingerprints.",
+  "author": {
+    "name": "junci003",
+    "email": "298531191+junci003@users.noreply.github.com"
+  },
+  "agents": [
+    "./agents/zh-expression-reviewer.md"
+  ],
+  "skills": [
+    "./skills/zh-humanizer",
+    "./skills/ui-humanizer"
+  ],
+  "expertType": "agent",
+  "agentName": "zh-expression-reviewer",
+  "displayName": {
+    "en": "Wen Ziqing",
+    "zh": "文自清"
+  },
+  "profession": {
+    "en": "Chinese Expression Reviewer",
+    "zh": "中文表达审校专家"
+  },
+  "displayDescription": {
+    "en": "Pre-publish review for Chinese text and interfaces: three-level AI-tell removal with zero fact loss, quantified self-check thresholds, and automated scanning of the three hard UI fingerprints.",
+    "zh": "给中文文本和界面做发布前审校：三档强度去 AI 味、量化判据自查、界面三类硬指纹扫描，事实零损失。"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "06-ContentCreative",
+  "defaultInitPrompt": {
+    "zh": "这篇稿子读起来像 AI 写的，帮我按 L2 强度改一遍，不许加原文没有的事实。",
+    "en": "This draft reads machine-written. Tighten it at L2 without adding any fact that is not in the original."
+  },
+  "plugin": "zh-expression-reviewer",
+  "tags": [
+    {
+      "en": "AI-tell Removal",
+      "zh": "去 AI 味"
+    },
+    {
+      "en": "UI AI Fingerprints",
+      "zh": "界面 AI 痕迹"
+    },
+    {
+      "en": "Pre-publish Check",
+      "zh": "发布前自查"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "en": "This draft reads machine-written. Tighten it at L2 without adding any fact that is not in the original.",
+      "zh": "这篇稿子读起来像 AI 写的，帮我按 L2 强度改一遍，不许加原文没有的事实。"
+    },
+    {
+      "en": "This landing page looks AI-generated. Scan it and give me a fix plan.",
+      "zh": "这个落地页的配色和图标看着很 AI，帮我扫一遍并给修复方案。"
+    },
+    {
+      "en": "Run a pre-publish check and tell me: can this ship, and what is still missing?",
+      "zh": "发布前帮我做一次自查，出结论：能不能发、还差什么。"
+    }
+  ]
+}

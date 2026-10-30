@@ -1,0 +1,132 @@
+{
+  "name": "skill-ops",
+  "version": "1.0.0",
+  "description": "A four-role team that takes a skill from draft to listed: ecosystem teardown, ClawHub release, environment repair, and session archiving.",
+  "author": {
+    "name": "junci003",
+    "email": "298531191+junci003@users.noreply.github.com"
+  },
+  "agents": [
+    "./agents/skill-ops-team-lead.md",
+    "./agents/ecosystem-analyst.md",
+    "./agents/release-engineer.md",
+    "./agents/env-fixer.md"
+  ],
+  "skills": [
+    "./skills/clawhub-publish",
+    "./skills/github-skill-teardown",
+    "./skills/openclaw-codex-reinstall",
+    "./skills/codex-archive-to-obsidian"
+  ],
+  "expertType": "team",
+  "agentName": "skill-ops-team-lead",
+  "teamInfo": {
+    "leadAgent": "skill-ops-team-lead",
+    "memberAgents": [
+      "ecosystem-analyst",
+      "release-engineer",
+      "env-fixer"
+    ]
+  },
+  "displayName": {
+    "en": "Skill Ops Team",
+    "zh": "Skill 工程专家团"
+  },
+  "profession": {
+    "en": "Skill Ops Team",
+    "zh": "Skill 工程专家团"
+  },
+  "displayDescription": {
+    "en": "A four-role team that takes a skill from draft to listed: market teardown, ClawHub release, environment repair and session archiving, with the pitfalls already written down.",
+    "zh": "把技能从草稿送到上架：拆解生态、发布到 ClawHub、修复本地环境、归档会话，全链路一支队伍接完。"
+  },
+  "avatar": "avatars/team.png",
+  "categoryId": "02-Engineering",
+  "defaultInitPrompt": {
+    "zh": "帮我把这个技能发出去，先看这个赛道有没有人做过。",
+    "en": "Publish this skill for me, starting with whether anyone has already done it."
+  },
+  "plugin": "skill-ops",
+  "tags": [
+    {
+      "en": "Skill Release",
+      "zh": "技能发布"
+    },
+    {
+      "en": "Ecosystem Teardown",
+      "zh": "生态拆解"
+    },
+    {
+      "en": "Environment Repair",
+      "zh": "环境修复"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "en": "Publish this skill for me, starting with whether anyone has already done it.",
+      "zh": "帮我把这个技能发出去，先看这个赛道有没有人做过。"
+    },
+    {
+      "en": "Is this niche still empty, or has someone tried and failed? Give me the evidence.",
+      "zh": "这个赛道还是空白位吗，还是有人做过没做成？给我证据。"
+    },
+    {
+      "en": "The release failed with an unclear error. Find out whether it is environment or parameters.",
+      "zh": "发布失败了，报错看不懂，帮我判断是环境问题还是参数问题。"
+    }
+  ],
+  "members": [
+    {
+      "id": "skill-ops-team-lead",
+      "displayName": {
+        "en": "Qi Shangjia",
+        "zh": "齐上架"
+      },
+      "profession": {
+        "en": "Skill Release Director",
+        "zh": "技能发行总监"
+      },
+      "avatar": "avatars/skill-ops-team-lead.png",
+      "role": "lead"
+    },
+    {
+      "id": "ecosystem-analyst",
+      "displayName": {
+        "en": "Zhen Touche",
+        "zh": "甄透彻"
+      },
+      "profession": {
+        "en": "Ecosystem Teardown Analyst",
+        "zh": "生态拆解师"
+      },
+      "avatar": "avatars/ecosystem-analyst.png",
+      "role": "member"
+    },
+    {
+      "id": "release-engineer",
+      "displayName": {
+        "en": "Shang Jiatui",
+        "zh": "尚加推"
+      },
+      "profession": {
+        "en": "Skill Release Engineer",
+        "zh": "发布工程师"
+      },
+      "avatar": "avatars/release-engineer.png",
+      "role": "member"
+    },
+    {
+      "id": "env-fixer",
+      "displayName": {
+        "en": "Xiu Detong",
+        "zh": "修得通"
+      },
+      "profession": {
+        "en": "Environment Repair Engineer",
+        "zh": "环境修复工程师"
+      },
+      "avatar": "avatars/env-fixer.png",
+      "role": "member"
+    }
+  ]
+}

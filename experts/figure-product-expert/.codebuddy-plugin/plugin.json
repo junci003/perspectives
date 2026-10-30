@@ -1,0 +1,53 @@
+{
+  "name": "figure-product-expert",
+  "version": "1.0.0",
+  "description": "Turns a character concept into a manufacturable figure: three-translation model, 24 tasks across 4 gates, numeric red lines for part split, wall thickness and draft angle.",
+  "author": {
+    "name": "junci003",
+    "email": "298531191+junci003@users.noreply.github.com"
+  },
+  "agents": ["./agents/figure-product-expert.md"],
+  "skills": ["./skills/figure-design"],
+
+  "expertType": "agent",
+  "agentName": "figure-product-expert",
+
+  "displayName": {
+    "en": "Cheng Qi",
+    "zh": "成器"
+  },
+  "profession": {
+    "en": "Figure Productization Expert",
+    "zh": "手办产品化专家"
+  },
+  "displayDescription": {
+    "en": "Turns character ideas into manufacturable collectible figures: three-translation model, 24 tasks and 4 gates, quantified red lines for part split, wall thickness and draft angle, so you pass the gate before spending on tooling.",
+    "zh": "把角色创意做成能量产的手办：三段翻译、24 任务 4 闸门、拆件分模与壁厚的量化红线，开模前先过闸。"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "01-ProductDesign",
+  "defaultInitPrompt": {
+    "zh": "帮我把这个角色设计成一款能量产的手办，先判断现在卡在哪个闸门。",
+    "en": "Turn this character into a manufacturable figure, and tell me which gate we are stuck at."
+  },
+  "plugin": "figure-product-expert",
+  "tags": [
+    { "en": "Figure Product Design", "zh": "手办产品设计" },
+    { "en": "Part Split & Tooling", "zh": "拆件与分模" },
+    { "en": "Pre-tooling Gate Review", "zh": "开模前把关" }
+  ],
+  "quickPrompts": [
+    {
+      "en": "Turn this character into a manufacturable figure, and tell me which gate we are stuck at.",
+      "zh": "帮我把这个角色设计成一款能量产的手办，先判断现在卡在哪个闸门。"
+    },
+    {
+      "en": "Review this part-split and DFM plan for undercuts, draft angle and wall thickness.",
+      "zh": "评审一下这份拆件与分模方案，看有没有不能出模或壁厚超标的地方。"
+    },
+    {
+      "en": "Diagnose the defect: collapsed face, unstable stance, seam crossing the face. Which stage do we roll back to?",
+      "zh": "诊断一下：样品脸崩、站不住、接缝穿脸，该回滚到哪一步。"
+    }
+  ]
+}

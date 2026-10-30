@@ -17,8 +17,16 @@ $ExtraSkills = @(
     'github-skill-teardown',
     'clawhub-publish',
     'codex-archive-to-obsidian',
-    'openclaw-codex-reinstall'
+    'openclaw-codex-reinstall',
+    'daily-points-claim',
+    'figure-design',
+    'godot-openxr-marker-tracking',
+    'mindar-webar-image-tracking'
 )
+
+# local-only artefacts that must never be committed
+$ExcludeFiles = @('_skillhub_meta.json', '_meta.json', '_icon.png')
+$ExcludeDirs = @('logs')
 
 $src = Join-Path $env:USERPROFILE '.workbuddy\skills'
 $dst = $PSScriptRoot
@@ -42,7 +50,15 @@ foreach ($name in $names) {
     }
     $target = Join-Path $dst $name
     New-Item -ItemType Directory -Force -Path $target | Out-Null
-    Copy-Item (Join-Path $full '*') -Destination $target -Recurse -Force
+    Get-ChildItem $full -Recurse -File | ForEach-Object {
+        if ($ExcludeFiles -contains $_.Name) { return }
+        $rel = $_.FullName.Substring($full.Length).TrimStart('\')
+        $top = $rel.Split('\')[0]
+        if ($ExcludeDirs -contains $top) { return }
+        $out = Join-Path $target $rel
+        New-Item -ItemType Directory -Force -Path (Split-Path $out) | Out-Null
+        Copy-Item $_.FullName -Destination $out -Force
+    }
     Write-Host "[ok]   $name"
     $count++
 }

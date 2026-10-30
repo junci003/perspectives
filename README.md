@@ -42,6 +42,10 @@
 | [clawhub-publish](clawhub-publish/) | 把本地 skill 发布到 ClawHub 并托管到 GitHub | 发布前 5 步检查（含分发面竞争格局检索）、沙箱内 device flow 自助登录、内容审查 pattern、**5 个实测陷阱**、git refs 静默失败修复脚本 |
 | [codex-archive-to-obsidian](codex-archive-to-obsidian/) | 把 Codex 会话记录归档进 Obsidian 知识库 | rollout jsonl 结构解析、双源扫描去重、注入噪声剥离（7 类）、自动生成索引 |
 | [openclaw-codex-reinstall](openclaw-codex-reinstall/) | Windows 下干净卸载重装 OpenClaw / Codex，并接入第三方模型 | 只读扫描清单、隔离备份替代回收站、三个 npm 安装坑、WSL 网关、桌面版模型名报错的三个独立根因、中文界面 |
+| [daily-points-claim](daily-points-claim/) | 每日签到 / 积分自动领取 | 站点配置模板（method / url / headers / body / 成功判定表达式）、多站点批量执行、`--json` 结构化输出、`logs/runs.jsonl` 运行留痕、失败原因归类；配置里只有 clean 示例站点，不含任何凭据 |
+| [figure-design](figure-design/) | 手办 / 潮玩 / 盲盒 / GK 的产品化设计与量产前把关 | 2D→3D→模具→货架「三段翻译」模型、24 任务 4 闸门工作流、拆件分模壁厚公差拔模角的量化上下限、`gate_check.py` 过闸脚本 |
+| [godot-openxr-marker-tracking](godot-openxr-marker-tracking/) | 在 Godot 4.6+ 做 OpenXR 标记追踪（ArUco / AprilTag / QR） | Spatial Entities 接入、`OpenXRMarkerTracker` 用法、无 XR 设备时的 headless 编译校验与 API 回归、`Cannot call non-static function` 一类报错的成因 |
+| [mindar-webar-image-tracking](mindar-webar-image-tracking/) | 手机 WebAR 图像识别（扫卡牌 / 包装出 3D） | 纯 Node 编译 `.mind` 绕开 node-canvas、用特征点数在编译期判定目标图质量、合成假摄像头在无头浏览器做端到端验证 |
 
 **目录名 ↔ 平台 slug**
 
@@ -67,6 +71,10 @@ clawhub install github-skill-teardown
 clawhub install skill-publish-pipeline
 clawhub install codex-archive-to-obsidian
 clawhub install codex-reinstall-windows
+clawhub install daily-points-claim
+clawhub install figure-design
+clawhub install godot-openxr-marker-tracking
+clawhub install mindar-webar-image-tracking
 ```
 
 **方式二：手动**

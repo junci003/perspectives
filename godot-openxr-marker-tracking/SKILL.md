@@ -328,7 +328,10 @@ def tilt_deg(rvec, tvec):
 
 ## 七、验证清单（改完代码照这个跑）
 
-1. `bash tools/verify.sh` —— 编译 + API 回归 + Python 自测一键跑
+1. `bash tools/verify.sh --project <项目目录>` —— 编译 + API 回归 + Python 自测一键跑。
+   无 Godot 的机器上加 `--skip-godot` 只跑 Python 段；缺 `cv2`/`numpy` 时该段报 SKIP
+   而不是假通过。退出码：`0` 通过 / `1` 有失败 / `2` 一项都没跑成。
+   脚本把本节下面两条（API 断言、编译判据）都写成了可执行形式，改代码后照跑即可。
 2. API 回归脚本要常驻，把上面「纠错对照表」里的每条都写成断言：
    正确名字**存在**、错误名字**不存在**。这样下次 Godot 改 API 会立刻暴露
 3. 真机测试前先确认设备能力：`is_aruco_supported()` 可能为 false
